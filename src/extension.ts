@@ -11,6 +11,7 @@ import { readFile } from 'fs';
 import { homedir } from 'os';
 import * as path from 'path';
 import { fetch } from 'undici';
+import { jePiloteConfig } from "./jepiloteConfig"
 
 interface Completion {
 	generated_text: string;
@@ -35,7 +36,9 @@ function createLoadingIndicator(): vscode.StatusBarItem {
 export async function activate(context: vscode.ExtensionContext) {
 	ctx = context;
 	handleConfigTemplateChange(ctx);
-	const config = vscode.workspace.getConfiguration("llm");
+	const config = jePiloteConfig;
+	console.log("Config::", config);
+	console.log("zzz", config.get("lsp.binaryPath"));
 	// TODO: support TransportKind.socket
 	const binaryPath: string | null = config.get("lsp.binaryPath") as string | null;
 	let command: string;
@@ -69,14 +72,14 @@ export async function activate(context: vscode.ExtensionContext) {
 		}
 	};
 
-	const outputChannel = vscode.window.createOutputChannel('LLM VS Code', { log: true });
+	const outputChannel = vscode.window.createOutputChannel('OVHCloud Jepilote', { log: true });
 	const clientOptions: LanguageClientOptions = {
 		documentSelector: [{ scheme: "*" }],
 		outputChannel,
 	};
 	client = new LanguageClient(
 		'llm',
-		'LLM VS Code',
+		'OVHCloud Jepilote',
 		serverOptions,
 		clientOptions
 	);
@@ -140,9 +143,10 @@ export async function activate(context: vscode.ExtensionContext) {
 	ctx.subscriptions.push(attribution);
 	const provider: vscode.InlineCompletionItemProvider = {
 		async provideInlineCompletionItems(document, position, context, token) {
-			const config = vscode.workspace.getConfiguration("llm");
+			const config = jePiloteConfig;
 			const autoSuggest = config.get("enableAutoSuggest") as boolean;
 			const requestDelay = config.get("requestDelay") as number;
+			console.log("Go", config);
 			if (context.triggerKind === vscode.InlineCompletionTriggerKind.Automatic && !autoSuggest) {
 				return;
 			}
@@ -223,7 +227,7 @@ function handleConfigTemplateChange(context: vscode.ExtensionContext) {
 		if (event.affectsConfiguration('llm.configTemplate')) {
 			const config = vscode.workspace.getConfiguration("llm");
 			const configKey = config.get("configTemplate") as TemplateKey;
-			const template = templates[configKey];
+			const template = jePiloteConfig;
 			if (template) {
 				const updatePromises = Object.entries(template).map(([key, val]) => config.update(key, val, vscode.ConfigurationTarget.Global));
 				await Promise.all(updatePromises);

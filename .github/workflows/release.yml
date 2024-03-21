@@ -9,6 +9,7 @@ on:
 env:
   FETCH_DEPTH: 0 # pull in the tags for the version string
   LLM_LS_VERSION: 0.5.2
+  LLM_LS_REPO: Wats0ns/llm-ls
 
 jobs:
   package:
@@ -52,7 +53,7 @@ jobs:
 
       - uses: robinraju/release-downloader@v1.8
         with:
-          repository: "huggingface/llm-ls"
+          repository: ${{ env.LLM_LS_REPO }}
           tag: ${{ env.LLM_LS_VERSION }}
           fileName: "llm-ls-${{ matrix.target }}.gz"
 

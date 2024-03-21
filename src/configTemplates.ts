@@ -129,6 +129,8 @@ const OllamaCodeLlama7BConfig: Config = {
 	}
 }
 
+export { HfCodeLlama13BConfig };
+
 export const templates: Partial<Record<TemplateKey, Config>> = {
 	"hf/bigcode/starcoder": HfStarCoderConfig,
 	"hf/codellama/CodeLlama-13b-hf": HfCodeLlama13BConfig,

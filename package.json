@@ -1,9 +1,9 @@
 {
-  "name": "huggingface-vscode",
-  "displayName": "llm-vscode",
-  "description": "LLM powered development for VS Code",
+  "name": "jepilote",
+  "displayName": "jepilote-ovhcloud",
+  "description": "Integration for OVHCloud of Huggingface LLM plugin.",
   "version": "0.2.0",
-  "publisher": "HuggingFace",
+  "publisher": "OVHCloud",
   "icon": "small_logo.png",
   "engines": {
     "vscode": "^1.82.0"
@@ -53,174 +53,12 @@
     "commands": [
       {
         "command": "llm.afterInsert",
-        "title": "Llm: After Insert"
-      },
-      {
-        "command": "llm.login",
-        "title": "Llm: Login"
-      },
-      {
-        "command": "llm.logout",
-        "title": "Llm: Logout"
-      },
-      {
-        "command": "llm.attribution",
-        "title": "Llm: Show Code Attribution"
+        "title": "Jepilote: After Insert"
       }
     ],
     "configuration": [
       {
-        "title": "Llm",
-        "properties": {
-          "llm.requestDelay": {
-            "type": "integer",
-            "default": 150,
-            "description": "Delay between requests in milliseconds"
-          },
-          "llm.enableAutoSuggest": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable automatic suggestions"
-          },
-          "llm.configTemplate": {
-            "type": "string",
-            "enum": [
-              "hf/bigcode/starcoder",
-              "hf/codellama/CodeLlama-13b-hf",
-              "hf/Phind/Phind-CodeLlama-34B-v2",
-              "hf/WizardLM/WizardCoder-Python-34B-V1.0",
-              "hf/deepseek-ai/deepseek-coder-6.7b-base",
-              "ollama/codellama:7b",
-              "Custom"
-            ],
-            "default": "hf/bigcode/starcoder",
-            "description": "Choose your model template from the dropdown"
-          },
-          "llm.modelId": {
-            "type": "string",
-            "default": "bigcode/starcoder",
-            "description": "Model id (ex: `bigcode/starcoder`), will be used to route your request to the appropriate model"
-          },
-          "llm.backend": {
-            "type": "string",
-            "enum": [
-              "huggingface",
-              "ollama",
-              "openai",
-              "tgi"
-            ],
-            "default": "huggingface",
-            "description": "Backend used by the extension"
-          },
-          "llm.url": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "default": null,
-            "description": "HTTP URL of the backend, when null will use the default url for the Inference API"
-          },
-          "llm.fillInTheMiddle.enabled": {
-            "type": "boolean",
-            "default": true,
-            "description": "Enable fill in the middle for the current model"
-          },
-          "llm.fillInTheMiddle.prefix": {
-            "type": "string",
-            "default": "<fim_prefix>",
-            "description": "Prefix token"
-          },
-          "llm.fillInTheMiddle.middle": {
-            "type": "string",
-            "default": "<fim_middle>",
-            "description": "Middle token"
-          },
-          "llm.fillInTheMiddle.suffix": {
-            "type": "string",
-            "default": "<fim_suffix>",
-            "description": "Suffix token"
-          },
-          "llm.requestBody": {
-            "type": "object",
-            "default": {
-              "parameters": {
-                "max_new_tokens": 60,
-                "temperature": 0.2,
-                "top_p": 0.95
-              }
-            },
-            "description": "Whatever you set here will be sent as is as the HTTP POST request body to the chosen backend. Model and prompt will be added automatically."
-          },
-          "llm.contextWindow": {
-            "type": "integer",
-            "default": 2048,
-            "description": "Context window of the model"
-          },
-          "llm.tokensToClear": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "default": [
-              "<|endoftext|>"
-            ],
-            "description": "(Optional) Tokens that should be cleared from the resulting output. For example, in FIM mode, one usually wants to clear FIM token from resulting outout."
-          },
-          "llm.attributionWindowSize": {
-            "type": "integer",
-            "default": 250,
-            "description": "Number of characters to scan for code attribution"
-          },
-          "llm.attributionEndpoint": {
-            "type": "string",
-            "default": "https://stack.dataportraits.org/overlap",
-            "description": "Endpoint to which attribution request will be sent to (https://stack.dataportraits.org/overlap for the stack)"
-          },
-          "llm.tlsSkipVerifyInsecure": {
-            "type": "boolean",
-            "default": false,
-            "description": "Skip TLS verification for insecure connections"
-          },
-          "llm.lsp.binaryPath": {
-            "type": [
-              "string",
-              "null"
-            ],
-            "default": null,
-            "description": "Path to llm-ls binary, useful for debugging or when building from source"
-          },
-          "llm.lsp.port": {
-            "type": [
-              "number",
-              "null"
-            ],
-            "default": null,
-            "description": "When running llm-ls with `--port`, port for the llm-ls server"
-          },
-          "llm.lsp.logLevel": {
-            "type": "string",
-            "default": "warn",
-            "description": "llm-ls log level"
-          },
-          "llm.tokenizer": {
-            "type": [
-              "object",
-              "null"
-            ],
-            "default": null,
-            "description": "Tokenizer configuration for the model, check out the documentation for more details"
-          },
-          "llm.documentFilter": {
-            "type": [
-              "object",
-              "array"
-            ],
-            "default": {
-              "pattern": "**"
-            },
-            "description": "Filter documents to enable suggestions for"
-          }
-        }
+        "title": "Jepilote"
       }
     ],
     "keybindings": [
