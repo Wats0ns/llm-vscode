@@ -1,8 +1,8 @@
 {
   "name": "jepilote",
-  "displayName": "jepilote-ovhcloud",
+  "displayName": "Jepilote",
   "description": "Integration for OVHCloud of Huggingface LLM plugin.",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "publisher": "OVHCloud",
   "icon": "small_logo.png",
   "engines": {
